@@ -1,1 +1,27 @@
 
+import random
+
+def generate_random_list(n, low, high):
+    return [random.randint(low, high) for _ in range(n)]
+
+def average_above_x(lst, x):
+    return sum(i for i in lst if i > x) / len([i for i in lst if i > x]) if any(i > x for i in lst) else 0
+
+def count_equal_first(lst):
+    return lst.count(lst[0])
+
+# Wywołanie funkcji a
+n = 10
+low = 1
+high = 100
+random_list = generate_random_list(n, low, high)
+print(f"Losowa lista: {random_list}")
+
+# Wywołanie funkcji b
+x = 50
+average = average_above_x(random_list, x)
+print(f"Średnia liczb większych niż {x}: {average}")
+
+# Wywołanie funkcji c
+equal_first_count = count_equal_first(random_list)
+print(f"Liczba elementów równych pierwszemu elementowi: {equal_first_count}")
