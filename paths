@@ -3,7 +3,6 @@ from itertools import permutations
 width = 4  
 height = 7  
 
-
 red_edges = {
     ((1,4), (2,4)),  # p
     ((2,6), (3,6)),  # q
