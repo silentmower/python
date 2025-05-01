@@ -28,7 +28,6 @@ def follow_path(path):
     return len(visited_edges)
 
 
-
 count = 0
 for path in unique_paths:
     red_count = follow_path(path)
