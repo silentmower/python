@@ -12,7 +12,6 @@ def get_matrix_input(rows, cols):
     return np.array(matrix)
 
 def main():
-    """ Główna funkcja programu """
     print("Wybierz operację:")
     print("1 - Transpozycja")
     print("2 - Macierz odwrotna")
