@@ -1,7 +1,6 @@
 import numpy as np
 
 def get_matrix_input(rows, cols):
-    """ Funkcja pobierająca macierz od użytkownika """
     print(f"Podaj elementy macierzy {rows}x{cols} (wiersz po wierszu):")
     matrix = []
     for i in range(rows):
