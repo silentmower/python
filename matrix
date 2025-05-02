@@ -1,0 +1,35 @@
+import numpy as np
+
+def get_matrix_input():
+    rows = int(input("Podaj liczbę wierszy macierzy: "))
+    cols = int(input("Podaj liczbę kolumn macierzy: "))
+    print(f"Podaj elementy macierzy {rows}x{cols} (wiersz po wierszu):")
+
+    matrix = []
+    for i in range(rows):
+        row = list(map(float, input(f"Wiersz {i+1}: ").split()))
+        while len(row) != cols:
+            print("Nieprawidłowa liczba elementów. Spróbuj ponownie.")
+            row = list(map(float, input(f"Wiersz {i+1}: ").split()))
+        matrix.append(row)
+
+    return np.array(matrix)
+
+# Pobieranie danych od użytkownika
+print("Wprowadź pierwszą macierz:")
+A = get_matrix_input()
+
+print("Wprowadź drugą macierz (dla operacji wymagających dwóch macierzy):")
+B = get_matrix_input()
+
+# Operacje na macierzach
+sum_matrix = A + B
+product_matrix = np.dot(A, B) if A.shape[1] == B.shape[0] else "Nie można pomnożyć - niezgodne wymiary"
+transpose_A = A.T
+inverse_A = np.linalg.inv(A) if np.linalg.det(A) != 0 else "Macierz nieodwracalna"
+
+# Wyniki
+print("\nSuma macierzy:\n", sum_matrix)
+print("Iloczyn macierzy:\n", product_matrix)
+print("Transpozycja pierwszej macierzy:\n", transpose_A)
+print("Macierz odwrotna pierwszej macierzy:\n", inverse_A)
