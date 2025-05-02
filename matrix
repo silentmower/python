@@ -1,10 +1,8 @@
 import numpy as np
 
-def get_matrix_input():
-    rows = int(input("Podaj liczbę wierszy macierzy: "))
-    cols = int(input("Podaj liczbę kolumn macierzy: "))
+def get_matrix_input(rows, cols):
+    """ Funkcja pobierająca macierz od użytkownika """
     print(f"Podaj elementy macierzy {rows}x{cols} (wiersz po wierszu):")
-
     matrix = []
     for i in range(rows):
         row = list(map(float, input(f"Wiersz {i+1}: ").split()))
@@ -12,24 +10,60 @@ def get_matrix_input():
             print("Nieprawidłowa liczba elementów. Spróbuj ponownie.")
             row = list(map(float, input(f"Wiersz {i+1}: ").split()))
         matrix.append(row)
-
     return np.array(matrix)
 
-# Pobieranie danych od użytkownika
-print("Wprowadź pierwszą macierz:")
-A = get_matrix_input()
+def main():
+    """ Główna funkcja programu """
+    print("Wybierz operację:")
+    print("1 - Transpozycja")
+    print("2 - Macierz odwrotna")
+    print("3 - Dodawanie")
+    print("4 - Mnożenie")
+    print("5 - Rząd macierzy")
 
-print("Wprowadź drugą macierz (dla operacji wymagających dwóch macierzy):")
-B = get_matrix_input()
+    choice = input("Podaj numer operacji: ")
 
-# Operacje na macierzach
-sum_matrix = A + B
-product_matrix = np.dot(A, B) if A.shape[1] == B.shape[0] else "Nie można pomnożyć - niezgodne wymiary"
-transpose_A = A.T
-inverse_A = np.linalg.inv(A) if np.linalg.det(A) != 0 else "Macierz nieodwracalna"
+    if choice in ["1", "2", "5"]:
+        rows = int(input("Podaj liczbę wierszy macierzy: "))
+        cols = int(input("Podaj liczbę kolumn macierzy: "))
+        A = get_matrix_input(rows, cols)
 
-# Wyniki
-print("\nSuma macierzy:\n", sum_matrix)
-print("Iloczyn macierzy:\n", product_matrix)
-print("Transpozycja pierwszej macierzy:\n", transpose_A)
-print("Macierz odwrotna pierwszej macierzy:\n", inverse_A)
+        if choice == "1":
+            result = A.T
+            print("\nTranspozycja macierzy:\n", result)
+        elif choice == "2":
+            result = np.linalg.inv(A) if np.linalg.det(A) != 0 else "Macierz nieodwracalna"
+            print("\nMacierz odwrotna:\n", result)
+        elif choice == "5":
+            result = np.linalg.matrix_rank(A)
+            print("\nRząd macierzy:\n", result)
+
+    elif choice in ["3", "4"]:
+        rows_A = int(input("Podaj liczbę wierszy pierwszej macierzy: "))
+        cols_A = int(input("Podaj liczbę kolumn pierwszej macierzy: "))
+        A = get_matrix_input(rows_A, cols_A)
+
+        rows_B = int(input("Podaj liczbę wierszy drugiej macierzy: "))
+        cols_B = int(input("Podaj liczbę kolumn drugiej macierzy: "))
+        B = get_matrix_input(rows_B, cols_B)
+
+        if choice == "3":
+            if A.shape == B.shape:
+                result = A + B
+                print("\nSuma macierzy:\n", result)
+            else:
+                print("\nNie można dodać macierzy - niezgodne wymiary.")
+
+        elif choice == "4":
+            if A.shape[1] == B.shape[0]:
+                result = np.dot(A, B)
+                print("\nIloczyn macierzy:\n", result)
+            else:
+                print("\nNie można pomnożyć macierzy - niezgodne wymiary.")
+
+    else:
+        print("Niepoprawny wybór operacji. Spróbuj ponownie.")
+
+if __name__ == "__main__":
+    main()
+
