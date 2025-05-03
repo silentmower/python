@@ -1,0 +1,41 @@
+import sympy as sp
+import scipy.integrate as integrate
+
+def get_function():
+    """ Pobiera funkcję od użytkownika """
+    expr = input("Podaj funkcję do całkowania (np. x**2 + 3*x): ")
+    x = sp.Symbol('x')
+    return sp.sympify(expr), x
+
+def definite_integral():
+    """ Oblicza całkę oznaczoną """
+    func, x = get_function()
+    a = float(input("Podaj dolną granicę całkowania: "))
+    b = float(input("Podaj górną granicę całkowania: "))
+    
+    result, _ = integrate.quad(lambda x: eval(str(func)), a, b)
+    print(f"\nCałka oznaczona wynosi: {result}")
+
+def indefinite_integral():
+    """ Oblicza całkę nieoznaczoną """
+    func, x = get_function()
+    result = sp.integrate(func, x)
+    print(f"\nCałka nieoznaczona wynosi: {result} + C")
+
+def main():
+    """ Główna funkcja programu - wybór operacji """
+    print("Wybierz rodzaj całkowania:")
+    print("1 - Całkowanie oznaczone")
+    print("2 - Całkowanie nieoznaczone")
+    
+    choice = input("Podaj numer operacji: ")
+
+    if choice == "1":
+        definite_integral()
+    elif choice == "2":
+        indefinite_integral()
+    else:
+        print("Niepoprawny wybór. Spróbuj ponownie.")
+
+if __name__ == "__main__":
+    main()
