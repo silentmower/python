@@ -1,6 +1,7 @@
 import sympy as sp
 import scipy.integrate as integrate
 
+
 def get_function():
     x = sp.Symbol('x')
     while True:
