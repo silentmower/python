@@ -15,7 +15,6 @@ def get_function():
             print("Niepoprawne wyrażenie. Spróbuj ponownie.")
 
 
-
 def definite_integral():
     func, x = get_function()
     a = float(input("Podaj dolną granicę całkowania: "))
