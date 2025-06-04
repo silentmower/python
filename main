@@ -15,6 +15,7 @@ def count_equal_first(lst):
 
 
 
+
 n = 10
 low = 1
 high = 100
