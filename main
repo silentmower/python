@@ -9,6 +9,7 @@ def average_above_x(lst, x):
 def count_equal_first(lst):
     return lst.count(lst[0])
 
+
 n = 10
 low = 1
 high = 100
