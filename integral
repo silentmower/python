@@ -44,6 +44,5 @@ def main():
     else:
         print("Niepoprawny wybór. Spróbuj ponownie.")
 
-
 if __name__ == "__main__":
     main()
